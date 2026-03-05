@@ -99,7 +99,6 @@ export default function LifeDesignMap() {
   const [activeArea, setActiveArea] = useState("income");
   const [activeMentor, setActiveMentor] = useState(null);
 
-  const mentor = MENTORS.find((m) => m.id === state.mentor);
 
   const setIntention = (area, month, value) => {
     setState((s) => ({
@@ -111,15 +110,7 @@ export default function LifeDesignMap() {
     }));
   };
 
-  const setReflection = (area, mentor, value) => {
-    setState((s) => ({
-      ...s,
-      reflections: {
-        ...s.reflections,
-        [`${area}-${mentor}`]: value,
-      },
-    }));
-  };
+
 
   return (
     <div style={{
