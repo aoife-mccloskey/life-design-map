@@ -304,6 +304,7 @@ export default function LifeDesignMap() {
             { id: "map", label: "📅 6-Month Grid" },
             { id: "mentor", label: "🧭 Mentor Lenses" },
             { id: "reflect", label: "✍️ Deep Reflection" },
+            { id: "hd", label: "✦ Human Design" },
           ].map(t => (
             <button key={t.id} type="button" onClick={() => setTab(t.id)} style={{
               flex: 1, padding: "10px 8px", borderRadius: 9, border: "none", cursor: "pointer",
@@ -591,7 +592,119 @@ export default function LifeDesignMap() {
           </div>
         )}
 
-        {/* Footer */}
+        {/* ===== HUMAN DESIGN ===== */}
+        {tab === "hd" && (
+          <div>
+            <h2 style={{ fontSize: 13, letterSpacing: 4, color: "#00BCD4", textTransform: "uppercase", marginBottom: 8 }}>✦ Your Human Design</h2>
+            <p style={{ fontSize: 12, color: "#6a6080", marginBottom: 24, fontStyle: "italic" }}>
+              Your energetic blueprint — how you're designed to move through the world, make decisions, and plan your next 6 months.
+            </p>
+
+            {/* Key stats bar */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10, marginBottom: 28 }}>
+              {[
+                { label: "Type", value: "Projector", color: "#00BCD4" },
+                { label: "Profile", value: "1 / 3", color: "#9C27B0" },
+                { label: "Authority", value: "Self Projected", color: "#FF9800" },
+                { label: "Definition", value: "Split", color: "#2196F3" },
+                { label: "Strategy", value: "Wait for the Invitation", color: "#4CAF50" },
+                { label: "Not-Self", value: "Bitterness", color: "#E84545" },
+              ].map(s => (
+                <div key={s.label} style={{ padding: "14px 12px", background: `${s.color}10`, border: `1px solid ${s.color}30`, borderRadius: 12, textAlign: "center" }}>
+                  <div style={{ fontSize: 10, color: s.color, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>{s.label}</div>
+                  <div style={{ fontSize: 13, color: "#e0d8f0", fontWeight: 600, lineHeight: 1.3 }}>{s.value}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Incarnation Cross */}
+            <div style={{ background: "linear-gradient(135deg, rgba(0,188,212,0.08), rgba(156,39,176,0.06))", border: "1px solid rgba(0,188,212,0.2)", borderRadius: 14, padding: "18px 20px", marginBottom: 20 }}>
+              <div style={{ fontSize: 11, color: "#00BCD4", letterSpacing: 3, textTransform: "uppercase", marginBottom: 8 }}>Incarnation Cross</div>
+              <div style={{ fontSize: 16, color: "#e0d8f0", fontWeight: 500, marginBottom: 8 }}>Right Angle Cross of Contagion (14/8 | 29/30)</div>
+              <div style={{ fontSize: 12, color: "#8a80a0", lineHeight: 1.7 }}>
+                Your life's purpose is to spread energy, ideas and ways of being that are genuinely contagious — in the best sense. Gate 14 brings the energy of power skills and material abundance. Gate 8 brings contribution and making a difference. Gate 29 brings commitment and saying yes to what truly matters. Gate 30 brings the fire of desires and emotional depth. Together: you're here to model a way of living so authentic and alive that others catch it simply by being around you.
+              </div>
+            </div>
+
+            {/* Deep dives */}
+            {[
+              {
+                title: "Projector — The Guide",
+                color: "#00BCD4",
+                emoji: "🔭",
+                body: "You are not here to work like a Generator or initiate like a Manifestor. You're here to see, guide, and direct energy — yours and others'. Projectors have a natural gift for reading systems and people deeply. Your superpower is insight and wisdom, not output. The world is still catching up to the Projector way, which can make it feel like you're doing it wrong. You're not.",
+                planning: "In your next 6 months: protect your energy ruthlessly. You can absorb others' energy easily (Split Definition) and mistake it for your own drive. Work in focused bursts, rest without guilt, and don't push when you're not feeling invited or recognised.",
+              },
+              {
+                title: "Strategy — Wait for the Invitation",
+                color: "#4CAF50",
+                emoji: "🌿",
+                body: "This doesn't mean sitting passively. It means creating the conditions for invitations to find you — by being visible, magnetic, and deeply yourself. When you initiate without invitation, you tend to meet resistance and exhaustion. When you wait and the right invitation comes, things flow with almost supernatural ease.",
+                planning: "For your business and projects: instead of pushing into rooms uninvited, focus on being so compelling and clear that the right people invite you in. Your Coding Course, retreats, and AI workshops all benefit from this — build visibility, let curiosity do the inviting.",
+              },
+              {
+                title: "Self Projected Authority — Trust Your Voice",
+                color: "#FF9800",
+                emoji: "🎙️",
+                body: "Your authority lives in your Throat and G Centre. You make your best decisions by talking them out with trusted people — not for their advice, but to hear yourself speak. When you say something out loud and it sounds true and alive, that's your authority confirming it. When it sounds flat or forced, that's a no.",
+                planning: "Before committing to anything in the next 6 months — a project, a collaboration, a course launch — talk it through out loud. Voice memos work too. Notice what makes you light up when you say it vs what feels like a performance.",
+              },
+              {
+                title: "Profile 1/3 — Investigator / Martyr",
+                color: "#9C27B0",
+                emoji: "📚",
+                body: "Line 1 (Investigator): You need a solid foundation of knowledge before you feel secure enough to act or share. Research, study, and deep investigation aren't procrastination for you — they're essential fuel. Line 3 (Martyr): You learn through trial and error, through what doesn't work. Your 'failures' and experiments are not detours — they are the path. Your lived experience of what works and what doesn't is one of your most valuable assets.",
+                planning: "Your PhD, your ecstatic dance events, your tutoring — all of it is Line 3 research in action. In the next 6 months, trust that testing ideas, pivoting, and learning through doing is exactly how you're meant to build. Stop waiting until you have it all figured out.",
+              },
+              {
+                title: "Split Definition — The Bridge Seeker",
+                color: "#2196F3",
+                emoji: "🌉",
+                body: "You have two separate defined areas in your chart that aren't directly connected. This means you naturally seek people and environments that bridge your split — and can feel temporarily 'complete' around certain people. This is powerful for connection but means you're vulnerable to conditioning from others who bridge you. You may take on their energy, drives and urgency as if they were your own.",
+                planning: "Be discerning about who you spend extended time with in the next 6 months. Notice when your drive or urgency feels genuinely yours vs borrowed from someone around you. Solitude and decompression time is not optional — it's how you return to yourself.",
+              },
+              {
+                title: "Not-Self Theme — Bitterness",
+                color: "#E84545",
+                emoji: "⚠️",
+                body: "Bitterness arises when you're not being recognised for who you are, when you're initiating without invitation, or when you're working in a way that exhausts rather than energises. It's a signal, not a flaw.",
+                planning: "Use bitterness as a compass in your planning. If you're feeling bitter about a project, relationship or direction — pause. Ask: am I being seen here? Was I truly invited? Am I pushing? The answer will tell you what to adjust.",
+              },
+            ].map(card => (
+              <div key={card.title} style={{ marginBottom: 16, background: `${card.color}08`, border: `1px solid ${card.color}25`, borderRadius: 14, padding: "20px 18px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+                  <span style={{ fontSize: 24 }}>{card.emoji}</span>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: card.color }}>{card.title}</div>
+                </div>
+                <div style={{ fontSize: 13, color: "#b0a8c8", lineHeight: 1.7, marginBottom: 12 }}>{card.body}</div>
+                <div style={{ padding: "10px 14px", background: `${card.color}12`, borderRadius: 8, borderLeft: `3px solid ${card.color}60` }}>
+                  <div style={{ fontSize: 10, color: card.color, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>Applied to Your Next 6 Months</div>
+                  <div style={{ fontSize: 12, color: "#8a80a0", lineHeight: 1.7 }}>{card.planning}</div>
+                </div>
+              </div>
+            ))}
+
+            {/* HD + Mentor synthesis */}
+            <div style={{ background: "linear-gradient(135deg, rgba(0,188,212,0.08), rgba(255,152,0,0.06))", border: "1px solid rgba(0,188,212,0.2)", borderRadius: 14, padding: "20px 18px" }}>
+              <div style={{ fontSize: 11, color: "#00BCD4", letterSpacing: 3, textTransform: "uppercase", marginBottom: 12 }}>✦ HD × Mentor Synthesis</div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 10 }}>
+                {[
+                  { mentor: "🔥 Robbins", insight: "Robbins says raise your standards — as a Projector, your standard is about quality of recognition and invitation, not quantity of output. Identity upgrade: 'I am someone who waits for the right stage, then commands it fully.'", color: "#E84545" },
+                  { mentor: "⚡ Ferriss", insight: "DEAL is perfect for Projectors. Eliminate especially hard — you cannot afford to work on things that don't light you up. Your energy is precious. The 20% that matters is work where you feel genuinely seen and invited.", color: "#2196F3" },
+                  { mentor: "💜 Brown", insight: "Wholehearted for a 1/3 Projector means embracing the research AND the experiments. Your trial-and-error isn't failure — it's data. Show up vulnerably as someone who learns in public.", color: "#9C27B0" },
+                  { mentor: "✨ Bashar", insight: "Bashar's excitement formula maps beautifully to Self Projected authority — your excitement IS your inner authority speaking. When something makes you light up out loud, that's your G Centre saying yes.", color: "#FF9800" },
+                ].map(s => (
+                  <div key={s.mentor} style={{ padding: "12px", background: `${s.color}0a`, borderRadius: 10, borderLeft: `2px solid ${s.color}50` }}>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: s.color, marginBottom: 6 }}>{s.mentor}</div>
+                    <div style={{ fontSize: 11, color: "#8a80a0", lineHeight: 1.6 }}>{s.insight}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+
         <div style={{ textAlign: "center", marginTop: 36, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <div style={{ fontSize: 11, color: "#3a3050", letterSpacing: 3, textTransform: "uppercase", marginBottom: 12 }}>
             ✦ Scorpio Sun · Pisces Moon · Taurus Rising · March–August 2026 ✦
