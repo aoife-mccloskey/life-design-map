@@ -315,7 +315,8 @@ export default function LifeDesignMap() {
                     border: `1px solid ${m.color}40`, borderRadius: 14, padding: "18px 16px", cursor: "pointer",
                     transition: "all 0.2s", transform: activeMentor === m.id ? "scale(1.02)" : "scale(1)",
                     boxShadow: activeMentor === m.id ? `0 8px 32px ${m.color}30` : "none",
-                    width: "100%", textAlign: "left", fontFamily: "inherit", color: "inherit",
+                    width: "100%", textAlign: "center", fontFamily: "inherit", color: "inherit",
+                    display: "flex", flexDirection: "column", alignItems: "center",
                   }}>
                     <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>{AVATARS[m.id](m.color, m.accent)}</div>
                     <div style={{ fontSize: 15, fontWeight: 600, color: m.color, marginBottom: 4, textAlign: "center" }}>{m.name}</div>
