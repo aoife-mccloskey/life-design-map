@@ -28,17 +28,29 @@ const AVATARS = {
       </defs>
       <circle cx="60" cy="60" r="56" fill="none" stroke={color} strokeWidth="1" strokeOpacity="0.3"/>
       <circle cx="60" cy="60" r="48" fill="url(#rg1)"/>
-      <polygon points="60,18 80,70 40,70" fill={accent} opacity="0.9"/>
-      <polygon points="60,28 75,65 45,65" fill={color} opacity="0.85"/>
-      <polygon points="60,38 70,62 50,62" fill="#FFD580" opacity="0.9"/>
-      <rect x="35" y="70" width="50" height="4" rx="2" fill={color} opacity="0.7"/>
-      <line x1="60" y1="18" x2="60" y2="8" stroke={accent} strokeWidth="1.5" opacity="0.6"/>
-      <line x1="60" y1="18" x2="50" y2="10" stroke={accent} strokeWidth="1" opacity="0.4"/>
-      <line x1="60" y1="18" x2="70" y2="10" stroke={accent} strokeWidth="1" opacity="0.4"/>
-      <circle cx="30" cy="40" r="2" fill={accent} opacity="0.6"/>
-      <circle cx="90" cy="35" r="1.5" fill="#FFD580" opacity="0.7"/>
-      <circle cx="85" cy="55" r="1" fill={accent} opacity="0.5"/>
-      <circle cx="25" cy="60" r="1.5" fill={color} opacity="0.5"/>
+      {/* Head */}
+      <circle cx="60" cy="30" r="10" fill={accent} opacity="0.9"/>
+      <circle cx="60" cy="30" r="7" fill={color} opacity="0.5"/>
+      {/* Body */}
+      <line x1="60" y1="40" x2="60" y2="78" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9"/>
+      {/* Arms raised in V — victory pose */}
+      <line x1="60" y1="50" x2="32" y2="30" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9"/>
+      <line x1="60" y1="50" x2="88" y2="30" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9"/>
+      {/* Hands */}
+      <circle cx="32" cy="30" r="5" fill={accent} opacity="0.95"/>
+      <circle cx="88" cy="30" r="5" fill={accent} opacity="0.95"/>
+      {/* Legs spread */}
+      <line x1="60" y1="78" x2="42" y2="98" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9"/>
+      <line x1="60" y1="78" x2="78" y2="98" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9"/>
+      {/* Energy radiating from hands */}
+      <line x1="32" y1="30" x2="22" y2="20" stroke={accent} strokeWidth="1.5" opacity="0.5"/>
+      <line x1="32" y1="30" x2="20" y2="30" stroke={accent} strokeWidth="1" opacity="0.4"/>
+      <line x1="88" y1="30" x2="98" y2="20" stroke={accent} strokeWidth="1.5" opacity="0.5"/>
+      <line x1="88" y1="30" x2="100" y2="30" stroke={accent} strokeWidth="1" opacity="0.4"/>
+      <circle cx="20" cy="20" r="2" fill="#FFD580" opacity="0.7"/>
+      <circle cx="100" cy="20" r="2" fill="#FFD580" opacity="0.7"/>
+      {/* Ground glow */}
+      <ellipse cx="60" cy="100" rx="20" ry="4" fill={accent} opacity="0.15"/>
     </svg>
   ),
   ferriss: (color, accent) => (
@@ -72,16 +84,16 @@ const AVATARS = {
       </defs>
       <circle cx="60" cy="60" r="56" fill="none" stroke={color} strokeWidth="1" strokeOpacity="0.3"/>
       <circle cx="60" cy="60" r="48" fill="url(#rg3)"/>
-      <path d="M60,85 C60,85 25,62 25,42 C25,30 35,22 47,27 C53,29 58,34 60,38 C62,34 67,29 73,27 C85,22 95,30 95,42 C95,62 60,85 60,85 Z" fill={accent} opacity="0.85"/>
-      <path d="M60,80 C60,80 30,60 30,43 C30,33 38,27 48,31 C54,33 58,37 60,41 C62,37 66,33 72,31 C82,27 90,33 90,43 C90,60 60,80 60,80 Z" fill={color} opacity="0.7"/>
-      <line x1="60" y1="22" x2="60" y2="14" stroke={accent} strokeWidth="1.5" opacity="0.4"/>
-      <line x1="38" y1="30" x2="32" y2="24" stroke={accent} strokeWidth="1" opacity="0.3"/>
-      <line x1="82" y1="30" x2="88" y2="24" stroke={accent} strokeWidth="1" opacity="0.3"/>
-      <line x1="22" y1="55" x2="14" y2="55" stroke={color} strokeWidth="1" opacity="0.3"/>
-      <line x1="98" y1="55" x2="106" y2="55" stroke={color} strokeWidth="1" opacity="0.3"/>
-      <circle cx="60" cy="14" r="2" fill={accent} opacity="0.5"/>
-      <circle cx="32" cy="24" r="1.5" fill={accent} opacity="0.4"/>
-      <circle cx="88" cy="24" r="1.5" fill={accent} opacity="0.4"/>
+      {/* Heart shifted down: top at ~48, bottom at ~88, centred at x=60, visual centre ~68 */}
+      <path d="M60,88 C60,88 28,68 28,50 C28,40 37,34 48,38 C53,40 57,45 60,49 C63,45 67,40 72,38 C83,34 92,40 92,50 C92,68 60,88 60,88 Z" fill={accent} opacity="0.85"/>
+      <path d="M60,82 C60,82 33,64 33,51 C33,43 40,38 50,42 C55,44 58,48 60,51 C62,48 65,44 70,42 C80,38 87,43 87,51 C87,64 60,82 60,82 Z" fill={color} opacity="0.7"/>
+      {/* Radiating lines from top of heart */}
+      <line x1="60" y1="38" x2="60" y2="28" stroke={accent} strokeWidth="1.5" opacity="0.4"/>
+      <line x1="44" y1="42" x2="38" y2="34" stroke={accent} strokeWidth="1" opacity="0.3"/>
+      <line x1="76" y1="42" x2="82" y2="34" stroke={accent} strokeWidth="1" opacity="0.3"/>
+      <circle cx="60" cy="28" r="2" fill={accent} opacity="0.5"/>
+      <circle cx="38" cy="34" r="1.5" fill={accent} opacity="0.4"/>
+      <circle cx="82" cy="34" r="1.5" fill={accent} opacity="0.4"/>
       <circle cx="60" cy="60" r="52" fill="none" stroke={accent} strokeWidth="0.5" strokeOpacity="0.15" strokeDasharray="3 4"/>
     </svg>
   ),
