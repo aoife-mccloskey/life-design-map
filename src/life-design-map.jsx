@@ -317,10 +317,10 @@ export default function LifeDesignMap() {
                     boxShadow: activeMentor === m.id ? `0 8px 32px ${m.color}30` : "none",
                     width: "100%", textAlign: "left", fontFamily: "inherit", color: "inherit",
                   }}>
-                    <div style={{ marginBottom: 10 }}>{AVATARS[m.id](m.color, m.accent)}</div>
-                    <div style={{ fontSize: 15, fontWeight: 600, color: m.color, marginBottom: 4 }}>{m.name}</div>
-                    <div style={{ fontSize: 11, color: "#8a80a0", letterSpacing: 1, textTransform: "uppercase", marginBottom: 10 }}>{m.philosophy}</div>
-                    <div style={{ fontSize: 12, color: "#b0a8c8", fontStyle: "italic", lineHeight: 1.5 }}>"{m.principle}"</div>
+                    <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>{AVATARS[m.id](m.color, m.accent)}</div>
+                    <div style={{ fontSize: 15, fontWeight: 600, color: m.color, marginBottom: 4, textAlign: "center" }}>{m.name}</div>
+                    <div style={{ fontSize: 11, color: "#8a80a0", letterSpacing: 1, textTransform: "uppercase", marginBottom: 10, textAlign: "center" }}>{m.philosophy}</div>
+                    <div style={{ fontSize: 12, color: "#b0a8c8", fontStyle: "italic", lineHeight: 1.5, textAlign: "center" }}>"{m.principle}"</div>
                     {activeMentor === m.id && (
                       <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${m.color}30` }}>
                         <div style={{ fontSize: 11, color: m.accent, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Core Tool</div>
