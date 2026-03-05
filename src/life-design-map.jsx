@@ -101,17 +101,39 @@ const LIFE_AREAS = [
 
 const MONTHS = ["Mar", "Apr", "May", "Jun", "Jul", "Aug"];
 
-const defaultState = {
-  intentions: {},
-  mentor: "robbins",
-  area: "income",
-  reflections: {},
-  milestones: {},
-  activeMentor: null,
-};
+function createDefaultState() {
+  return {
+    intentions: {},
+    mentor: "robbins",
+    area: "income",
+    reflections: {},
+    milestones: {},
+    activeMentor: null,
+  };
+}
+
+function asObject(value) {
+  return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+}
+
+function getInitialState() {
+  const saved = loadFromStorage();
+  if (!saved || typeof saved !== "object" || Array.isArray(saved)) {
+    return createDefaultState();
+  }
+
+  const defaults = createDefaultState();
+  return {
+    ...defaults,
+    ...saved,
+    intentions: asObject(saved.intentions),
+    reflections: asObject(saved.reflections),
+    milestones: asObject(saved.milestones),
+  };
+}
 
 export default function LifeDesignMap() {
-  const [state, setState] = useState(() => loadFromStorage() || defaultState);
+  const [state, setState] = useState(getInitialState);
 
   useEffect(() => {
     saveToStorage(state);
@@ -201,14 +223,23 @@ export default function LifeDesignMap() {
               </h2>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
                 {MENTORS.map(m => (
-                  <div key={m.id} onClick={() => { setActiveMentor(activeMentor === m.id ? null : m.id); }} style={{
+                  <button
+                    key={m.id}
+                    type="button"
+                    onClick={() => { setActiveMentor(activeMentor === m.id ? null : m.id); }}
+                    style={{
                     background: `linear-gradient(135deg, ${m.color}18, ${m.accent}0a)`,
                     border: `1px solid ${m.color}40`,
                     borderRadius: 14, padding: "18px 16px", cursor: "pointer",
                     transition: "all 0.2s",
                     transform: activeMentor === m.id ? "scale(1.02)" : "scale(1)",
                     boxShadow: activeMentor === m.id ? `0 8px 32px ${m.color}30` : "none",
-                  }}>
+                    width: "100%",
+                    textAlign: "left",
+                    fontFamily: "inherit",
+                    color: "inherit",
+                  }}
+                  >
                     <div style={{ fontSize: 28, marginBottom: 8 }}>{m.icon}</div>
                     <div style={{ fontSize: 15, fontWeight: 600, color: m.color, marginBottom: 4 }}>{m.name}</div>
                     <div style={{ fontSize: 11, color: "#8a80a0", letterSpacing: 1, textTransform: "uppercase", marginBottom: 10 }}>{m.philosophy}</div>
@@ -224,7 +255,7 @@ export default function LifeDesignMap() {
                         ))}
                       </div>
                     )}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -263,13 +294,19 @@ export default function LifeDesignMap() {
               </h2>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 10 }}>
                 {LIFE_AREAS.map(area => (
-                  <div key={area.id}
+                  <button
+                    key={area.id}
+                    type="button"
                     onClick={() => { setActiveArea(area.id); setTab("map"); }}
                     style={{
                       padding: "14px 16px", background: "rgba(255,255,255,0.04)",
                       borderRadius: 10, border: "1px solid rgba(255,255,255,0.08)",
                       cursor: "pointer", transition: "all 0.2s",
                       display: "flex", alignItems: "center", gap: 10,
+                      width: "100%",
+                      textAlign: "left",
+                      fontFamily: "inherit",
+                      color: "inherit",
                     }}
                     onMouseEnter={e => e.currentTarget.style.background = "rgba(156,39,176,0.12)"}
                     onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.04)"}
@@ -281,7 +318,7 @@ export default function LifeDesignMap() {
                         {state.intentions[`${area.id}-Mar`] ? "✓ has entries" : "tap to plan →"}
                       </div>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -379,10 +416,22 @@ export default function LifeDesignMap() {
                   {LIFE_AREAS.map((area, i) => (
                     <tr key={area.id} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.01)" : "transparent" }}>
                       <td style={{ padding: "10px 12px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-                        <span
+                        <button
+                          type="button"
                           onClick={() => setActiveArea(area.id)}
-                          style={{ cursor: "pointer", color: "#c0b8d8", fontSize: 12 }}
-                        >{area.emoji} {area.label}</span>
+                          style={{
+                            cursor: "pointer",
+                            color: "#c0b8d8",
+                            fontSize: 12,
+                            background: "none",
+                            border: "none",
+                            padding: 0,
+                            textAlign: "left",
+                            fontFamily: "inherit",
+                          }}
+                        >
+                          {area.emoji} {area.label}
+                        </button>
                       </td>
                       {MONTHS.map(month => (
                         <td key={month} style={{ padding: "10px", borderBottom: "1px solid rgba(255,255,255,0.04)", verticalAlign: "top" }}>
@@ -584,7 +633,7 @@ export default function LifeDesignMap() {
             onClick={() => {
               if (window.confirm("Clear all your saved entries? This cannot be undone.")) {
                 localStorage.removeItem(STORAGE_KEY);
-                setState(defaultState);
+                setState(createDefaultState());
               }
             }}
             style={{
