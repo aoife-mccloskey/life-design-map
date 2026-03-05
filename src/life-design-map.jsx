@@ -1,4 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const STORAGE_KEY = "aoife-life-design-v1";
+
+function loadFromStorage() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveToStorage(state) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {}
+}
 
 const MENTORS = [
   {
@@ -94,11 +111,14 @@ const defaultState = {
 };
 
 export default function LifeDesignMap() {
-  const [state, setState] = useState(defaultState);
+  const [state, setState] = useState(() => loadFromStorage() || defaultState);
+
+  useEffect(() => {
+    saveToStorage(state);
+  }, [state]);
   const [tab, setTab] = useState("overview"); // overview | map | mentor | reflect
   const [activeArea, setActiveArea] = useState("income");
   const [activeMentor, setActiveMentor] = useState(null);
-
 
   const setIntention = (area, month, value) => {
     setState((s) => ({
@@ -109,8 +129,6 @@ export default function LifeDesignMap() {
       },
     }));
   };
-
-
 
   return (
     <div style={{
@@ -558,9 +576,25 @@ export default function LifeDesignMap() {
 
         {/* Footer */}
         <div style={{ textAlign: "center", marginTop: 36, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          <div style={{ fontSize: 11, color: "#3a3050", letterSpacing: 3, textTransform: "uppercase" }}>
+          <div style={{ fontSize: 11, color: "#3a3050", letterSpacing: 3, textTransform: "uppercase", marginBottom: 12 }}>
             ✦ Scorpio Sun · Pisces Moon · Taurus Rising · March 2026 ✦
           </div>
+          <div style={{ fontSize: 11, color: "#3a3050", marginBottom: 8 }}>✓ Your entries auto-save to this browser</div>
+          <button
+            onClick={() => {
+              if (window.confirm("Clear all your saved entries? This cannot be undone.")) {
+                localStorage.removeItem(STORAGE_KEY);
+                setState(defaultState);
+              }
+            }}
+            style={{
+              background: "transparent", border: "1px solid rgba(255,255,255,0.08)",
+              color: "#4a4060", borderRadius: 6, padding: "5px 14px",
+              fontSize: 11, cursor: "pointer", fontFamily: "inherit", letterSpacing: 1,
+            }}
+          >
+            Reset all data
+          </button>
         </div>
       </div>
     </div>
