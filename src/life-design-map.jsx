@@ -13,6 +13,119 @@ function saveToStorage(state) {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
 }
 
+const AVATARS = {
+  robbins: (color, accent) => (
+    <svg viewBox="0 0 120 120" width="80" height="80">
+      <defs>
+        <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="60" cy="60" r="56" fill="none" stroke={color} strokeWidth="1" strokeOpacity="0.3" />
+      <circle cx="60" cy="60" r="48" fill="url(#rg1)" />
+      <polygon points="60,18 80,70 40,70" fill={accent} opacity="0.9" />
+      <polygon points="60,28 75,65 45,65" fill={color} opacity="0.85" />
+      <polygon points="60,38 70,62 50,62" fill="#FFD580" opacity="0.9" />
+      <rect x="35" y="70" width="50" height="4" rx="2" fill={color} opacity="0.7" />
+      <line x1="60" y1="18" x2="60" y2="8" stroke={accent} strokeWidth="1.5" opacity="0.6" />
+      <line x1="60" y1="18" x2="50" y2="10" stroke={accent} strokeWidth="1" opacity="0.4" />
+      <line x1="60" y1="18" x2="70" y2="10" stroke={accent} strokeWidth="1" opacity="0.4" />
+      <circle cx="30" cy="40" r="2" fill={accent} opacity="0.6" />
+      <circle cx="90" cy="35" r="1.5" fill="#FFD580" opacity="0.7" />
+      <circle cx="85" cy="55" r="1" fill={accent} opacity="0.5" />
+      <circle cx="25" cy="60" r="1.5" fill={color} opacity="0.5" />
+      <circle cx="60" cy="30" r="10" fill={accent} opacity="0.9" />
+      <circle cx="60" cy="30" r="7" fill={color} opacity="0.5" />
+      <line x1="60" y1="40" x2="60" y2="78" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9" />
+      <line x1="60" y1="50" x2="32" y2="30" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9" />
+      <line x1="60" y1="50" x2="88" y2="30" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9" />
+      <circle cx="32" cy="30" r="5" fill={accent} opacity="0.95" />
+      <circle cx="88" cy="30" r="5" fill={accent} opacity="0.95" />
+      <line x1="60" y1="78" x2="42" y2="98" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9" />
+      <line x1="60" y1="78" x2="78" y2="98" stroke={accent} strokeWidth="5" strokeLinecap="round" opacity="0.9" />
+      <line x1="32" y1="30" x2="22" y2="20" stroke={accent} strokeWidth="1.5" opacity="0.5" />
+      <line x1="32" y1="30" x2="20" y2="30" stroke={accent} strokeWidth="1" opacity="0.4" />
+      <line x1="88" y1="30" x2="98" y2="20" stroke={accent} strokeWidth="1.5" opacity="0.5" />
+      <line x1="88" y1="30" x2="100" y2="30" stroke={accent} strokeWidth="1" opacity="0.4" />
+      <circle cx="20" cy="20" r="2" fill="#FFD580" opacity="0.7" />
+      <circle cx="100" cy="20" r="2" fill="#FFD580" opacity="0.7" />
+      <ellipse cx="60" cy="100" rx="20" ry="4" fill={accent} opacity="0.15" />
+    </svg>
+  ),
+  ferriss: (color, accent) => (
+    <svg viewBox="0 0 120 120" width="80" height="80">
+      <defs>
+        <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.2" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="60" cy="60" r="56" fill="none" stroke={color} strokeWidth="1" strokeOpacity="0.3" />
+      <circle cx="60" cy="60" r="48" fill="url(#rg2)" />
+      <line x1="20" y1="60" x2="100" y2="60" stroke={color} strokeWidth="0.5" opacity="0.3" />
+      <line x1="60" y1="20" x2="60" y2="100" stroke={color} strokeWidth="0.5" opacity="0.3" />
+      <polygon points="68,20 48,58 62,58 52,100 80,52 64,52 76,20" fill={accent} opacity="0.9" />
+      <polygon points="68,20 50,56 63,56 53,96 78,52 63,52 74,22" fill={color} opacity="0.7" />
+      <circle cx="25" cy="25" r="2" fill={accent} opacity="0.5" />
+      <circle cx="95" cy="25" r="2" fill={accent} opacity="0.5" />
+      <circle cx="25" cy="95" r="2" fill={color} opacity="0.4" />
+      <circle cx="95" cy="95" r="2" fill={color} opacity="0.4" />
+      <ellipse cx="60" cy="60" rx="42" ry="18" fill="none" stroke={accent} strokeWidth="0.8" strokeOpacity="0.25" strokeDasharray="4 3" />
+    </svg>
+  ),
+  brown: (color, accent) => (
+    <svg viewBox="0 0 120 120" width="80" height="80">
+      <defs>
+        <radialGradient id="rg3" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.2" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="60" cy="60" r="56" fill="none" stroke={color} strokeWidth="1" strokeOpacity="0.3" />
+      <circle cx="60" cy="60" r="48" fill="url(#rg3)" />
+      <path d="M60,88 C60,88 28,68 28,50 C28,40 37,34 48,38 C53,40 57,45 60,49 C63,45 67,40 72,38 C83,34 92,40 92,50 C92,68 60,88 60,88 Z" fill={accent} opacity="0.85" />
+      <path d="M60,82 C60,82 33,64 33,51 C33,43 40,38 50,42 C55,44 58,48 60,51 C62,48 65,44 70,42 C80,38 87,43 87,51 C87,64 60,82 60,82 Z" fill={color} opacity="0.7" />
+      <line x1="60" y1="38" x2="60" y2="28" stroke={accent} strokeWidth="1.5" opacity="0.4" />
+      <line x1="44" y1="42" x2="38" y2="34" stroke={accent} strokeWidth="1" opacity="0.3" />
+      <line x1="76" y1="42" x2="82" y2="34" stroke={accent} strokeWidth="1" opacity="0.3" />
+      <circle cx="60" cy="28" r="2" fill={accent} opacity="0.5" />
+      <circle cx="38" cy="34" r="1.5" fill={accent} opacity="0.4" />
+      <circle cx="82" cy="34" r="1.5" fill={accent} opacity="0.4" />
+      <circle cx="60" cy="60" r="52" fill="none" stroke={accent} strokeWidth="0.5" strokeOpacity="0.15" strokeDasharray="3 4" />
+    </svg>
+  ),
+  bashar: (color, accent) => (
+    <svg viewBox="0 0 120 120" width="80" height="80">
+      <defs>
+        <radialGradient id="rg4" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.25" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="60" cy="60" r="56" fill="none" stroke={color} strokeWidth="1" strokeOpacity="0.3" />
+      <circle cx="60" cy="60" r="48" fill="url(#rg4)" />
+      {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle, i) => {
+        const rad = (angle * Math.PI) / 180;
+        const outerR = i % 2 === 0 ? 38 : 18;
+        const x = 60 + outerR * Math.sin(rad);
+        const y = 60 - outerR * Math.cos(rad);
+        return <line key={i} x1="60" y1="60" x2={x} y2={y} stroke={i % 2 === 0 ? accent : color} strokeWidth={i % 2 === 0 ? "2" : "1"} opacity={i % 2 === 0 ? "0.9" : "0.5"} />;
+      })}
+      <circle cx="60" cy="60" r="12" fill={accent} opacity="0.9" />
+      <circle cx="60" cy="60" r="8" fill={color} opacity="0.95" />
+      <circle cx="60" cy="60" r="4" fill={accent} opacity="1" />
+      <circle cx="60" cy="22" r="3" fill={accent} opacity="0.7" />
+      <circle cx="93" cy="42" r="2" fill={color} opacity="0.6" />
+      <circle cx="93" cy="78" r="2.5" fill={accent} opacity="0.5" />
+      <circle cx="60" cy="98" r="2" fill={color} opacity="0.5" />
+      <circle cx="27" cy="78" r="2" fill={accent} opacity="0.6" />
+      <circle cx="27" cy="42" r="3" fill={color} opacity="0.6" />
+      <circle cx="60" cy="60" r="44" fill="none" stroke={accent} strokeWidth="0.5" strokeOpacity="0.2" strokeDasharray="2 5" />
+    </svg>
+  ),
+};
+
 const MENTORS = [
   {
     id: "robbins", name: "Tony Robbins", icon: "🔥", color: "#E84545", accent: "#FF8C00",
@@ -242,10 +355,11 @@ export default function LifeDesignMap() {
                     borderRadius: 14, padding: "18px 16px", cursor: "pointer", transition: "all 0.2s",
                     transform: activeMentor === m.id ? "scale(1.02)" : "scale(1)",
                     boxShadow: activeMentor === m.id ? `0 8px 32px ${m.color}30` : "none",
-                    width: "100%", textAlign: "left", fontFamily: "inherit", color: "inherit",
+                    width: "100%", textAlign: "center", fontFamily: "inherit", color: "inherit",
+                    display: "flex", flexDirection: "column", alignItems: "center",
                   }}>
-                    <div style={{ fontSize: 28, marginBottom: 8 }}>{m.icon}</div>
-                    <div style={{ fontSize: 15, fontWeight: 600, color: m.color, marginBottom: 4 }}>{m.name}</div>
+                    <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>{AVATARS[m.id](m.color, m.accent)}</div>
+                    <div style={{ fontSize: 15, fontWeight: 600, color: m.color, marginBottom: 4, textAlign: "center" }}>{m.name}</div>
                     <div style={{ fontSize: 11, color: "#8a80a0", letterSpacing: 1, textTransform: "uppercase", marginBottom: 10 }}>{m.philosophy}</div>
                     <div style={{ fontSize: 12, color: "#b0a8c8", fontStyle: "italic", lineHeight: 1.5 }}>"{m.principle}"</div>
                     {activeMentor === m.id && (
@@ -395,7 +509,7 @@ export default function LifeDesignMap() {
               {MENTORS.map(m => (
                 <div key={m.id} style={{ background: `linear-gradient(160deg, ${m.color}12, ${m.accent}06)`, border: `1px solid ${m.color}35`, borderRadius: 16, padding: "22px 18px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-                    <span style={{ fontSize: 32 }}>{m.icon}</span>
+                    <span style={{ flexShrink: 0 }}>{AVATARS[m.id](m.color, m.accent)}</span>
                     <div>
                       <div style={{ fontSize: 16, fontWeight: 600, color: m.color }}>{m.name}</div>
                       <div style={{ fontSize: 11, color: "#5a5070", letterSpacing: 1, textTransform: "uppercase" }}>{m.philosophy}</div>
